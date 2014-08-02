@@ -28,7 +28,7 @@ function Address(addrStr) {
   this.transactions   = [];
   this.unspent   = [];
 
-  var a = new BitcoreAddress(addrStr);
+  var a = new BitcoreAddress(addrStr, 'base58', config.currency);
   a.validate();
   this.addrStr        = addrStr;
   

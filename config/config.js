@@ -142,6 +142,7 @@ console.log(
 \t\tP2P Port: %s\tBITCOIND_P2P_PORT\n\
 \t\tData Dir: %s\tBITCOIND_DATADIR\n\
 \t\t%s\n\
+\t\tCurrency: %s\tINSIGHT_CURRENCY\n\
 \nChange setting by assigning the enviroment variables in the last column. Example:\n\
  $ INSIGHT_NETWORK="testnet" BITCOIND_HOST="123.123.123.123" ./insight.js\
 \n\n',
@@ -154,7 +155,9 @@ console.log(
   bitcoindConf.port,
   bitcoindConf.p2pHost,
   bitcoindConf.p2pPort,
-  dataDir + (network === 'testnet' ? '*' : ''), (network === 'testnet' ? '* (/testnet3 is added automatically)' : '')
+  dataDir + (network === 'testnet' ? '*' : ''), 
+  (network === 'testnet' ? '* (/testnet3 is added automatically)' : ''),
+  currency
 );
 
 

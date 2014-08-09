@@ -8,7 +8,8 @@ var config = require('./config');
 module.exports = function(app) {
 
   var apiPrefix = config.apiPrefix;
-
+  var frontendPrefix = config.frontendPrefix;
+  
   //Block routes
   var blocks = require('../app/controllers/blocks');
   app.get(apiPrefix + '/blocks', blocks.list);
@@ -54,5 +55,6 @@ module.exports = function(app) {
   //Home route
   var index = require('../app/controllers/index');
   app.get(apiPrefix + '/version', index.version);
-  app.get('*', index.render);
+  //app.get('*', index.render);
+  app.get(frontendPrefix, index.render);
 };

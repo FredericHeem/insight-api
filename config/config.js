@@ -2,6 +2,8 @@
 
 var network = process.env.INSIGHT_NETWORK || 'testnet';
 var currency = process.env.INSIGHT_CURRENCY || 'btc';
+var apiPrefix = process.env.INSIGHT_APIPREFIX || '/api';
+var frontendPrefix = process.env.INSIGHT_FRONTENDPREFIX || '/';
 
 var config_currency = {
     btc:{
@@ -143,6 +145,8 @@ console.log(
 \t\tData Dir: %s\tBITCOIND_DATADIR\n\
 \t\t%s\n\
 \t\tCurrency: %s\tINSIGHT_CURRENCY\n\
+\t\tApi prefix: %s\tINSIGHT_APIPREFIX\n\
+\t\tFront End prefix: %s\tINSIGHT_FRONTENDPREFIX\n\
 \nChange setting by assigning the enviroment variables in the last column. Example:\n\
  $ INSIGHT_NETWORK="testnet" BITCOIND_HOST="123.123.123.123" ./insight.js\
 \n\n',
@@ -157,7 +161,9 @@ console.log(
   bitcoindConf.p2pPort,
   dataDir + (network === 'testnet' ? '*' : ''), 
   (network === 'testnet' ? '* (/testnet3 is added automatically)' : ''),
-  currency
+  currency,
+  apiPrefix,
+  frontendPrefix
 );
 
 
@@ -175,7 +181,8 @@ module.exports = {
   root: rootPath,
   publicPath: process.env.INSIGHT_PUBLIC_PATH || false,
   appName: 'Insight ' + config_currency[currency].nameCamel + " " + env,
-  apiPrefix: '/api',
+  apiPrefix: apiPrefix,
+  frontendPrefix: frontendPrefix,
   port: config_currency[currency][network].port,
   leveldb: db,
   bitcoind: bitcoindConf,

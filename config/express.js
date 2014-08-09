@@ -48,7 +48,7 @@ module.exports = function(app, historicSync, peerSync) {
     var staticPath = path.normalize(config.rootPath + '/../' + config.publicPath);
 
     //IMPORTANT: for html5mode, this line must to be before app.router
-    app.use(express.static(staticPath));
+    app.use(config.frontendPrefix, express.static(staticPath));
   }
 
   // manual helpers

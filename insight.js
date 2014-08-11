@@ -80,7 +80,8 @@ require('./config/routes')(expressApp);
 
 // socket.io
 var server = require('http').createServer(expressApp);
-var ios = require('socket.io')(server, {path:config.frontendPrefix + "socket.io"});
+var pathSocketio = config.apiPrefix === '/' ? "/socket.io" : config.apiPrefix + "/socket.io"
+var ios = require('socket.io')(server, {path:pathSocketio});
 ios.path(config.frontendPrefix + "socket.io")
 require('./app/controllers/socket.js').init(expressApp, ios);
 

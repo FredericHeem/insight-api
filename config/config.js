@@ -12,7 +12,7 @@ var config_currency = {
       name:'bitoin',
       nameCamel:'Bitcoin',
       livenet: {
-        port:3000,
+        port:3001,
         rpc_port:8332,
         p2p_port:8333
       },
@@ -27,7 +27,7 @@ var config_currency = {
       name:'litecoin',
       nameCamel:'Litecoin',
       livenet: {
-        port:3002,
+        port:3003,
         rpc_port:9332,
         p2p_port:9333
       },
@@ -42,7 +42,7 @@ var config_currency = {
       name:'dogecoin',
       nameCamel:'Dogecoin',
       livenet: {
-        port:3004,
+        port:3005,
         rpc_port:22555,
         p2p_port:22556
       },

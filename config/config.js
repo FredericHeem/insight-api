@@ -51,7 +51,22 @@ var config_currency = {
         rpc_port:44555,
         p2p_port:44556
       }
-    }
+    },
+    drk:{
+        db:'.insight_darkcoin',
+        name:'darkcoin',
+        nameCamel:'Darkcoin',
+        livenet: {
+          port:3007,
+          rpc_port:9998,
+          p2p_port:9999
+        },
+        testnet:{
+          port:3007,
+          rpc_port:19998,
+          p2p_port:19999
+        }
+      }
 }
 var path = require('path'),
   fs = require('fs'),
@@ -69,6 +84,16 @@ function getUserHome() {
 
 var home = process.env.INSIGHT_DB || (getUserHome() + '/' + config_currency[currency].db);
 
+if (!fs.existsSync(home)) {
+    var err = fs.mkdirSync(home);
+    if (err) {
+      console.log(err);
+      console.log("## ERROR! Can't create insight directory! \n");
+      console.log('\tPlease create it manually: ', db);
+      process.exit(-1);
+    }
+  }
+
 if (network === 'livenet') {
   env = 'livenet';
   db = home;
@@ -77,6 +102,15 @@ if (network === 'livenet') {
   db = home + '/testnet';
 }
 
+if (!fs.existsSync(db)) {
+    var err = fs.mkdirSync(db);
+    if (err) {
+      console.log(err);
+      console.log("## ERROR! Can't create testnet insight directory! \n");
+      console.log('\tPlease create it manually: ', db);
+      process.exit(-1);
+    }
+  }
 
 switch (process.env.NODE_ENV) {
   case 'production':
@@ -171,15 +205,7 @@ console.log(
 
 var enableMessageBroker = process.env.ENABLE_MESSAGE_BROKER === 'true';
 
-if (!fs.existsSync(db)) {
-  var err = fs.mkdirSync(db);
-  if (err) {
-    console.log(err);
-    console.log("## ERROR! Can't create insight directory! \n");
-    console.log('\tPlease create it manually: ', db);
-    process.exit(-1);
-  }
-}
+
 
 module.exports = {
   enableMessageBroker: enableMessageBroker,

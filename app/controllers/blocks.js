@@ -54,8 +54,8 @@ exports.blockindex = function(req, res, next, height) {
 
 var getBlock = function(blockhash, cb) {
   bdb.fromHashWithInfo(blockhash, function(err, block) {
-    if (err) {
-      console.log(err);
+    if (err || !block) {
+      console.log("getBlock error: ", err);
       return cb(err);
     }
 
@@ -133,8 +133,8 @@ exports.list = function(req, res) {
       async.mapSeries(blockList,
         function(b, cb) {
           getBlock(b.hash, function(err, info) {
-            if (err) {
-              console.log(err);
+            if (err || !info) {
+              console.log("List block: error:", err);
               return cb(err);
             }
             if (b.ts < moreTs) moreTs = b.ts;

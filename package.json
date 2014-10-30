@@ -62,6 +62,7 @@
     "glob": "*",
     "leveldown": "~0.10.0",
     "levelup": "~0.19.0",
+    "microtime": "^0.6.0",
     "moment": "~2.5.0",
     "preconditions": "^1.0.7",
     "should": "~2.1.1",

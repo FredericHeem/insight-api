@@ -6,3 +6,4 @@ export INSIGHT_PUBLIC_PATH=public
 export INSIGHT_APIPREFIX="/explorer/litecoin/api"
 export INSIGHT_FRONTENDPREFIX="/explorer/litecoin/"
 export INSIGHT_SOCKETIOPATH="/explorer/litecoin/api/socket.io"
+export BITCOIND_DATADIR=/idonotexist
